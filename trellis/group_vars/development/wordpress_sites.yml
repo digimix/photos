@@ -1,0 +1,25 @@
+# Documentation: https://roots.io/trellis/docs/local-development-setup/
+# `wordpress_sites` options: https://roots.io/trellis/docs/wordpress-sites
+# Define accompanying passwords/secrets in group_vars/development/vault.yml
+
+wordpress_sites:
+  photos.digimix.co:
+    site_hosts:
+      - photos.dev
+    local_path: ../site # path targeting local Bedrock site directory (relative to Ansible root)
+    admin_email: admin@photos.dev
+    multisite:
+      enabled: false
+    ssl:
+      enabled: false
+      provider: self-signed
+    cache:
+      enabled: false
+    env:
+      disable_wp_cron: false
+      wp_home: http://photos.dev
+      wp_siteurl: http://photos.dev/wp
+      wp_env: development
+      db_name: photos_dev
+      db_user: photos_dbuser
+      # db_password: (defined in group_vars/development/vault.yml)
